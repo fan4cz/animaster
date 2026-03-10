@@ -19,10 +19,26 @@ function addListeners() {
             animaster().move(block, 1000, {x: 100, y: 10});
         });
 
-    document.getElementById('scalePlay')
+    document.getElementById('moveAndHidePlay')
         .addEventListener('click', function () {
-            const block = document.getElementById('scaleBlock');
-            animaster().scale(block, 1000, 1.25);
+            const block = document.getElementById('moveAndHideBlock');
+            animaster().moveAndHide(block, 1000, 1.25);
+        });
+
+    document.getElementById('moveAndHidePlay')
+        .addEventListener('click', function () {
+            const block = document.getElementById('moveAndHideBlock');
+            animaster().moveAndHide(block, 1000, 1.25);
+        });
+    document.getElementById('moveAndHidePlay')
+        .addEventListener('click', function () {
+            const block = document.getElementById('moveAndHideBlock');
+            animaster().moveAndHide(block, 1000, 1.25);
+        });
+    document.getElementById('moveAndHidePlay')
+        .addEventListener('click', function () {
+            const block = document.getElementById('moveAndHideBlock');
+            animaster().moveAndHide(block, 1000, 1.25);
         });
 }
 
