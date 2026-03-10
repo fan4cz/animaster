@@ -19,26 +19,26 @@ function addListeners() {
             animaster().move(block, 1000, {x: 100, y: 10});
         });
 
-    document.getElementById('moveAndHidePlay')
+    document.getElementById('scalePlay')
         .addEventListener('click', function () {
-            const block = document.getElementById('moveAndHideBlock');
-            animaster().moveAndHide(block, 1000, 1.25);
+            const block = document.getElementById('scaleBlock');
+            animaster().scale(block, 1000, 1.25);
         });
 
     document.getElementById('moveAndHidePlay')
         .addEventListener('click', function () {
             const block = document.getElementById('moveAndHideBlock');
-            animaster().moveAndHide(block, 1000, 1.25);
+            animaster().moveAndHide(block, 1000);
         });
-    document.getElementById('moveAndHidePlay')
+    document.getElementById('showAndHidePlay')
         .addEventListener('click', function () {
-            const block = document.getElementById('moveAndHideBlock');
-            animaster().moveAndHide(block, 1000, 1.25);
+            const block = document.getElementById('showAndHideBlock');
+            animaster().showAndHide(block, 2000);
         });
-    document.getElementById('moveAndHidePlay')
+    document.getElementById('heartBeatingPlay')
         .addEventListener('click', function () {
-            const block = document.getElementById('moveAndHideBlock');
-            animaster().moveAndHide(block, 1000, 1.25);
+            const block = document.getElementById('heartBeatingBlock');
+            animaster().heartBeating(block, 1000, 1.25);
         });
 }
 
@@ -100,16 +100,24 @@ function animaster() {
     }
 
     function moveAndHide (element, duration) {
-        
+        move(element, duration * 0.4, {x: 100, y: 20});
+        setTimeout(() => {
+            fadeOut(element, duration * 0.6);
+        }, duration * 0.4);
     }
 
     function showAndHide  (element, duration) {
-        
+        fadeIn(element, duration / 3);
+        setTimeout(() => {
+                setTimeout(() => {
+                    fadeOut(element, duration / 3);
+                }, duration / 3);
+            }, duration / 3);            
     }
 
     function heartBeating   (element, duration) {
         
     }
 
-    return { fadeIn, fadeOut, move, scale };
+    return { fadeIn, fadeOut, move, scale, heartBeating, showAndHide, moveAndHide};
 }
