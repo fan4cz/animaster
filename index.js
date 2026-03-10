@@ -67,6 +67,17 @@ function addListeners() {
                 .addScale(800, 1);
             customAnimation.play(block);
         });
+
+    const worryAnimationHandler = animaster()
+        .addMove(200, {x: 80, y: 0})
+        .addMove(200, {x: 0, y: 0})
+        .addMove(200, {x: 80, y: 0})
+        .addMove(200, {x: 0, y: 0})
+        .buildHandler();
+
+    document
+        .getElementById('worryAnimationHandlerBlock')
+        .addEventListener('click', worryAnimationHandler);
 }
 
 function getTransform(translation, ratio) {
@@ -119,6 +130,12 @@ function animaster() {
                     }
                     delay += step.duration;
                 }
+        },
+
+        buildHandler() {
+            return (event) => {
+                this.play(event.currentTarget);
+            };
         },
 
         /**
