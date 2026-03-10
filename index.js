@@ -24,11 +24,17 @@ function addListeners() {
             const block = document.getElementById('scaleBlock');
             animaster().scale(block, 1000, 1.25);
         });
-
+    let moveAndHideAnimation;
     document.getElementById('moveAndHidePlay')
         .addEventListener('click', function () {
             const block = document.getElementById('moveAndHideBlock');
-            animaster().moveAndHide(block, 1000);
+            moveAndHideAnimation = animaster().moveAndHide(block, 1000);
+        });
+    document.getElementById('moveAndHideReset')
+        .addEventListener('click', function () {
+            if (moveAndHideAnimation) {
+                moveAndHideAnimation.reset();
+            }
         });
     document.getElementById('showAndHidePlay')
         .addEventListener('click', function () {
@@ -125,9 +131,16 @@ function animaster() {
 
     function moveAndHide (element, duration) {
         move(element, duration * 0.4, {x: 100, y: 20});
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             fadeOut(element, duration * 0.6);
         }, duration * 0.4);
+        return {
+            reset () {
+                clearTimeout(timeout);
+                resetFadeOut(element);
+                move(element, 0, {x: 0, y: 0});
+            }
+        }
     }
 
     function showAndHide  (element, duration) {
@@ -136,7 +149,7 @@ function animaster() {
                 setTimeout(() => {
                     fadeOut(element, duration / 3);
                 }, duration / 3);
-            }, duration / 3);            
+            }, duration / 3);
     }
 
     
