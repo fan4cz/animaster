@@ -82,5 +82,18 @@ function animaster() {
         element.style.transitionDuration =  `${duration}ms`;
         element.style.transform = getTransform(null, ratio);
     }
+
+    function moveAndHide (element, duration) {
+        
+    }
+
+    function showAndHide  (element, duration) {
+        
+    }
+
+    function heartBeating   (element, duration) {
+        
+    }
+
     return { fadeIn, fadeOut, move, scale };
 }
