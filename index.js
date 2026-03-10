@@ -62,6 +62,18 @@ function getTransform(translation, ratio) {
 
 
 function animaster() {
+    _steps = [];
+
+    function play(element) {
+        let delay = 0;
+            for (const step of this._steps) {
+                if (step.type === 'move') {
+                    setTimeout(() => move(element, step.duration, step.translation), delay);
+                }
+                delay += step.duration;
+            }
+    }
+
     /**
      * Блок плавно появляется из прозрачного.
      * @param element — HTMLElement, который надо анимировать
@@ -93,6 +105,11 @@ function animaster() {
     function move(element, duration, translation) {
         element.style.transitionDuration = `${duration}ms`;
         element.style.transform = getTransform(translation, null);        
+    }
+
+    function addMove( duration, translation) {
+        this._steps.push({ type: 'move', duration, translation });
+        return this;
     }
 
     /**
