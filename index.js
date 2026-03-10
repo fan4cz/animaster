@@ -53,6 +53,20 @@ function addListeners() {
                heartBeatingAnimation.stop();
            }
         });
+    document.getElementById('customAnimationPlay')
+        .addEventListener('click', function () {
+            const block = document.getElementById('customAnimationBlock');
+            const customAnimation = animaster()
+                .addMove(200, {x: 40, y: 40})
+                .addScale(800, 1.3)
+                .addMove(200, {x: 80, y: 0})
+                .addScale(800, 1)
+                .addMove(200, {x: 40, y: -40})
+                .addScale(800, 0.7)
+                .addMove(200, {x: 0, y: 0})
+                .addScale(800, 1);
+            customAnimation.play(block);
+        });
 }
 
 function getTransform(translation, ratio) {
@@ -74,12 +88,6 @@ function animaster() {
         play(element) {
             let delay = 0;
                 for (const step of this._steps) {
-                    if (step.type === 'move') {
-                        setTimeout(() => {
-                                element.style.transitionDuration = `${step.duration}ms`;
-                                element.style.transform = getTransform(step.translation, null);    
-                            } , delay);
-                    }
                     if (step.type === 'move') {
                         setTimeout(() => {
                             element.style.transitionDuration = `${step.duration}ms`;
@@ -142,7 +150,7 @@ function animaster() {
         },
 
         addMove( duration, translation) {
-            this._steps.push({ type: 'move', duration, translation });
+            this._steps.push({ type: 'move', duration, params: translation });
             return this;
         },
 
