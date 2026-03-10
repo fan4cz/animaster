@@ -115,15 +115,14 @@ function animaster() {
             }, duration / 3);            
     }
 
-    function heartBeating   (element, duration) {
-        function heartBeating(element) {
-            return setInterval(() => {
-                scale(element, 500, 1.4);
-                setTimeout(() => {
-                    scale(element, 500, 1);
-                }, 500)
-            }, 1000)
-        }
+    
+    function heartBeating(element) {
+        return setInterval(() => {
+            scale(element, 500, 1.4);
+            setTimeout(() => {
+                scale(element, 500, 1);
+            }, 500)
+        }, 1000)
     }
 
     return { fadeIn, fadeOut, move, scale, heartBeating, showAndHide, moveAndHide};
