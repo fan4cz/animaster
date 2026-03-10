@@ -25,11 +25,12 @@ function addListeners() {
             animaster().moveAndHide(block, 1000, 1.25);
         });
 
-    document.getElementById('moveAndHidePlay')
+    document.getElementById('heartBeatingPlay')
         .addEventListener('click', function () {
-            const block = document.getElementById('moveAndHideBlock');
-            animaster().moveAndHide(block, 1000, 1.25);
+            const block = document.getElementById('heartBeatingBlock');
+            animaster().heartBeating(block);
         });
+
     document.getElementById('moveAndHidePlay')
         .addEventListener('click', function () {
             const block = document.getElementById('moveAndHideBlock');
@@ -61,7 +62,7 @@ function animaster() {
      * @param duration — Продолжительность анимации в миллисекундах
      */
     function fadeIn(element, duration) {
-        element.style.transitionDuration =  `${duration}ms`;
+        element.style.transitionDuration = `${duration}ms`;
         element.classList.remove('hide');
         element.classList.add('show');
     }
@@ -95,21 +96,26 @@ function animaster() {
      * @param ratio — во сколько раз увеличить/уменьшить. Чтобы уменьшить, нужно передать значение меньше 1
      */
     function scale(element, duration, ratio) {
-        element.style.transitionDuration =  `${duration}ms`;
+        element.style.transitionDuration = `${duration}ms`;
         element.style.transform = getTransform(null, ratio);
     }
 
-    function moveAndHide (element, duration) {
-        
+    function moveAndHide(element, duration) {
+
     }
 
-    function showAndHide  (element, duration) {
-        
+    function showAndHide(element, duration) {
+
     }
 
-    function heartBeating   (element, duration) {
-        
+    function heartBeating(element) {
+        return setInterval(() => {
+            scale(element, 500, 1.4);
+            setTimeout(() => {
+                scale(element, 500, 1);
+            }, 500)
+        }, 1000)
     }
 
-    return { fadeIn, fadeOut, move, scale };
+    return {fadeIn, fadeOut, move, scale, heartBeating, showAndHide, moveAndHide};
 }
